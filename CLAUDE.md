@@ -1,0 +1,1 @@
+- this is a yaml dump of my experimental kubernetes cluster (k8s-fst) hosted on aliyun, using acs (Alibaba Cloud Container Compute Service). region is cn-hangzhou

@@ -1,0 +1,14 @@
+apiVersion: alibabacloud.com/v1
+kind: AlbConfig
+metadata:
+  name: alb-demo
+spec:
+  config:
+    name: alb-test
+    addressType: Internet
+    zoneMappings:
+    - vSwitchId: vsw-bp1wfz0oz34c6im76d2wl
+    - vSwitchId: vsw-bp1gz3s16kbsn2iuxm9df
+  listeners:
+    - port: 80
+      protocol: HTTP
