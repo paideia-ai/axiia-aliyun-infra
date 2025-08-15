@@ -1,1 +1,3 @@
 - this is a yaml dump of my experimental kubernetes cluster (k8s-fst) hosted on aliyun, using acs (Alibaba Cloud Container Compute Service). region is cn-hangzhou
+- we use only our own image registry. our internal domain for this registry is axiia-acr-registry-vpc.cn-hangzhou.cr.aliyuncs.com. it has two namespaces axiia and vendor. axiia is for our images; vendor is for mirrors of upstream like redis
+- unless explicitly instructed, use arm64 instance
