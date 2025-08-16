@@ -7,5 +7,5 @@ spec:
   parameters:
     apiGroup: alibabacloud.com
     kind: AlbConfig
-    name: alb-demo
+    name: main-alb
 

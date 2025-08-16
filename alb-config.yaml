@@ -1,10 +1,10 @@
 apiVersion: alibabacloud.com/v1
 kind: AlbConfig
 metadata:
-  name: alb-demo
+  name: main-alb
 spec:
   config:
-    name: alb-test
+    name: main-alb
     addressType: Internet
     zoneMappings:
     - vSwitchId: vsw-bp1wfz0oz34c6im76d2wl
@@ -12,3 +12,9 @@ spec:
   listeners:
     - port: 80
       protocol: HTTP
+    - port: 443
+      protocol: HTTPS
+      securityPolicyId: tls_cipher_policy_1_2_strict_with_1_3
+      certificates:
+      - CertificateId: 19967570-cn-hangzhou
+        IsDefault: true
