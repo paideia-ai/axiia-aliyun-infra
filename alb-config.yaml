@@ -14,7 +14,12 @@ spec:
       protocol: HTTP
     - port: 443
       protocol: HTTPS
+      # TLS
       securityPolicyId: tls_cipher_policy_1_2_strict_with_1_3
       certificates:
-      - CertificateId: 19967570-cn-hangzhou
+      - CertificateId: 19967909-cn-hangzhou
         IsDefault: true
+      # mTLS
+      caEnabled: true
+      caCertificates:
+      - CertificateId: 91a82d5ea7fc4f8e921231b16f40b837
