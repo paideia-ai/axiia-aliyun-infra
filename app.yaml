@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      # serviceAccountName: app-sa
+      # imagePullSecrets:
+      # - name: acr-credential-secret-aggregation
+      containers:
+      - name: app
+        image: axiia-acr-registry-vpc.cn-hangzhou.cr.aliyuncs.com/axiia/app:latest
+        command:
+        - "deno"
+        - "run"
+        - "-A"
+        - "--cached-only"
+        - "--node-modules-dir=manual"
+        - "main.ts"
+        - "--config-path=/etc/axiia/config.yml"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/axiia
+          readOnly: true
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: config-volume
+        secret:
+          secretName: axiia
+          items:
+          - key: config
+            path: config.yml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: app
